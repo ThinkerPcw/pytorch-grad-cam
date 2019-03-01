@@ -78,7 +78,7 @@ class GradCam():
         one_hot.backward(retain_graph=True)
 
         grads_val = self.extractor.gradient.cpu().data.numpy()
-         # 维度为（c, h, w）
+        # 维度为（c, h, w）
         target = target_activation.cpu().data.numpy()[0]
         # 维度为（c,）
         weights = np.mean(grads_val, axis = (2, 3))[0, :]
@@ -103,11 +103,11 @@ def show_cam_on_image(img, mask):
     cv2.imwrite("cam2.jpg", np.uint8(255 * cam))
 
 
-#target_layer 越靠近分类层效果越好
+# target_layer 越靠近分类层效果越好
 grad_cam = GradCam(model = models.vgg19(pretrained=True), target_layer_name = "35", use_cuda=True)
-input = preprocess_image("both.png")
+input = preprocess_image("samples/both.png")
 mask = grad_cam(input, None)
 img = cv2.imread("both.png", 1)
-#热度图是直接resize加到输入图上的
+# 热度图是直接resize加到输入图上的
 img = np.float32(cv2.resize(img, (224, 224))) / 255
 show_cam_on_image(img, mask)
