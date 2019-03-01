@@ -105,7 +105,7 @@ def show_cam_on_image(img, mask):
 
 # target_layer 越靠近分类层效果越好
 grad_cam = GradCam(model = models.vgg19(pretrained=True), target_layer_name = "35", use_cuda=True)
-input = preprocess_image(" examples/both.png")
+input = preprocess_image("examples/both.png")
 mask = grad_cam(input, None)
 img = cv2.imread("both.png", 1)
 # 热度图是直接resize加到输入图上的
