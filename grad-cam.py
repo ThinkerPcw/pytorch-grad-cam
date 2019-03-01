@@ -107,7 +107,7 @@ def show_cam_on_image(img, mask):
 grad_cam = GradCam(model = models.vgg19(pretrained=True), target_layer_name = "35", use_cuda=True)
 input = preprocess_image("examples/both.png")
 mask = grad_cam(input, None)
-img = cv2.imread("both.png", 1)
+img = cv2.imread("examples/both.png", 1)
 # 热度图是直接resize加到输入图上的
 img = np.float32(cv2.resize(img, (224, 224))) / 255
 show_cam_on_image(img, mask)
