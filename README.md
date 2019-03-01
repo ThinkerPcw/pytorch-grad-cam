@@ -25,4 +25,4 @@ This code assumes that the model passed supports these two methods.
 ----------
 
 
-Usage: `python grad-cam.py 
+Usage: `python grad-cam.py`
